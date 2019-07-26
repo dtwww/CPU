@@ -1,0 +1,501 @@
+YI:	addi 	$k0		$zero	 1  
+ER:	lui  	$s5		0x0008		
+SAN:	ori  	$s5		 $s5	0xe360	
+	add  	$t7		 $zero	$s5	
+	addi 	$t6		 $zero	0  
+	addi	$t2	$zero	2
+	addi	$t3	$zero	4
+	addi	$t4	$zero	8
+
+WAIT:	addi 	$s0		$zero	0xffff
+	sw      $s0            0xfff0($zero)
+	lw      $s2 		 0xfffc($zero)
+	andi	 $s2	 $s2  0x0070		 
+	beq  $s2	 $zero	 WAIT
+
+WAIT1:	addi 	$s0		$zero	0xffff
+	sw      $s0            0xfff0($zero)
+	lw      $s3 		 0xfffc($zero)	  
+	andi $s3	 $s3  0x0007		  
+	beq  $s3	 $zero	 WAIT1
+	 
+
+WHICH1:		addi	$s4		$zero	1			
+		addi 	$t0		$zero	0 
+				
+		addi	$t1		$t0    0x0040			
+		beq	$t1		$s2	STYLE3	
+		addi	$t1		$t0    0x0020			
+		beq	$t1		$s2	STYLE2
+		addi	$t1		$t0    0x0010			
+		beq	$t1		$s2	STYLE1							
+		j				STYLEALL
+		
+WHICH2:		addi	$s4		$zero	2			
+		addi 	$t0		$zero	0 
+	
+		addi	$t1		$t0    0x0004
+		beq	$t1		$s3	STYLE3
+		addi	$t1		$t0    0x0002
+		beq	$t1		$s3	STYLE2
+		addi	$t1		$t0    0x0001
+		beq	$t1		$s3	STYLE1
+		j				STYLEALL
+
+STYLE2:		addi	$t8	$zero	4	
+		addi 	$s7		 $zero	1	
+		addi 	$s6		 $zero	0	
+
+	JIU:	lw             $k1		0xfff4($zero)
+		beq 	 $k1		$k0	ER
+	
+	SHI:	addi	 $s0		$zero	0xfffe
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq 	 $k1		$k0	ER	
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1  			
+		beq  	$t6		$t7	HUA1
+	
+	SHISI:	j    	SHI 
+ 						
+	SHIWU:	addi 	$s0		 $zero	0xfffd 
+		sw      $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+	
+	SHIQI:	addi	$t6		$t6	1	
+		beq  	$t6		$t7	HUA2
+
+	SHIJIU:	j    SHIWU
+
+	ERSHI:	addi 	$s0	 	$zero	0xfffb
+		sw       $s0            0xfff0($zero) 
+
+	ERYI:	lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+
+	ERER:	addi 	$t6		$t6	1
+
+	ERSAN:	beq  	$t6		$t7	HUA3
+		j    ERSHI
+
+	ERWU:	addi 	$s0		$zero	0xfff7
+		sw       $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6 		$t7	HUA4
+
+	ERJIU:	j    ERWU
+
+	SANSHI:	addi 	$s0 		$zero	0xffef
+		sw       $s0            0xfff0($zero)	
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA5
+
+	SANSI:	j    SANSHI
+
+	SANWU:	addi 	$s0 		$zero	0xffdf
+		sw       $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA6
+		j    SANWU
+
+	SISHI:	addi 	$s0 		$zero	0xffbf
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA7
+		j    SISHI
+
+	SIWU:	addi 	$s0 		$zero	0xff7f
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA8
+		j    SIWU
+
+	WUSHI:	addi 	$s0 		$zero	0xfeff 
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA9
+		j   WUSHI
+
+	WUWU:	addi 	$s0 		$zero	0xfdff
+		sw       $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA10
+		j   WUWU
+
+	LIUSHI:	addi 	$s0 		$zero	0xfbff
+		sw       $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA11
+		j   LIUSHI
+
+	LIUWU:	addi 	$s0 		$zero	0xf7ff
+		sw       $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA12
+		j   LIUWU
+
+	QISHI:	addi 	$s0 		$zero	0xefff
+		sw       $s0            0xfff0($zero) 
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA13
+		j   QISHI
+
+	QIWU:	addi 	$s0 		$zero	0xdfff 
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA14
+		j   QIWU
+
+	BASHI:	addi 	$s0 		$zero	0xbfff 
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA15
+		j   BASHI
+
+	BAWU:	addi 	$s0 		$zero	0x7fff
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA16
+		j   BAWU
+
+	JIUSHI:	lui   	$s5             0000
+		ori 	$s5		$s5	0xfffe
+		sw       $s0            0xfff0($zero)                 
+		add	$s0		$zero	$s5
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6		$t7	HUA17	
+		j	JIUSHI
+	
+		
+	HUA1:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     SHIWU
+
+	HUA2:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     ERSHI
+	HUA3:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     ERWU
+	HUA4:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     SANSHI
+	HUA5:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     SANWU
+	HUA6:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     SISHI
+	HUA7:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     SIWU
+	HUA8:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j      WUSHI
+	HUA9:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     WUWU
+	HUA10:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     LIUSHI
+	HUA11:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     LIUWU
+	HUA12:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     QISHI
+	HUA13:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     QIWU
+	HUA14:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     BASHI
+	HUA15:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     BAWU
+	
+	HUA16:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		j     JIUSHI
+
+	HUA17:	addi 	$t6		 $zero	0  	
+		addi 	$s0		 $zero	0  	
+		addi	$s6		$s6	1
+		beq	$s6		$s7	QINGLING1               
+		j     SHI				
+		
+	QINGLING1 :
+		addi $t0, $zero, 0
+		addi	$t0		$t0	1
+		beq	$s4		$t0	WHICH2			
+		j			WHICH1	
+
+STYLE3:		addi	$t8	$zero	8
+		addi 	$s6		$0	0
+		lui 	$s5		0
+		ori	$s5		$s5	0x8001
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SANYI
+		j	STYLE3
+	EIGHT:	lui	$s5		0
+		ori	$s5		$s5	0x4002
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SANER
+		j	EIGHT
+      FIFTEEN:	lui	$s5		0
+		ori	$s5		$s5	0x2004
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SANSAN
+		j	FIFTEEN
+	TWENTY2:lui	$s5		0
+		ori	$s5		$s5	0x1008
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SAN4
+		j	TWENTY2
+	TWENTY9:lui	$s5		0
+		ori	$s5		$s5	0x0810
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SAN5
+		j	TWENTY9
+	THIRTY6:lui	$s5		0
+		ori	$s5		$s5	0x0420
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SANLIU
+		j	THIRTY6
+	FOURTY3:lui	$s5		0
+		ori	$s5		$s5	0x0240
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SANQI
+		j	FOURTY3
+	FIFTY:  lui	$s5		0
+		ori	$s5		$s5	0x0180
+		add	$s0		$zero	$s5
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6 	1
+		beq	$t6		$t7	SANBA
+		j	FIFTY	
+	SANYI:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	EIGHT
+	SANER:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	FIFTEEN
+	SANSAN:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	TWENTY2
+	SAN4:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	TWENTY9
+	SAN5:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	THIRTY6
+	SANLIU:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	FOURTY3
+	SANQI:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	FIFTY
+	SANBA:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+
+		addi $t0, $zero, 0
+        	addi	$t0		$t0	1
+		beq	$s4		$t0	WHICH2			
+		j			WHICH1	
+
+STYLE1:		addi	$t8	$zero	2
+		addi	$s0		$zero	0xf00f
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6	1
+		beq	$t6		$t7    YIYI
+		j	STYLE1
+
+	BAIYI:	addi	$s0		$zero	0x0ff0
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6	1
+		beq	$t6		$t7     YIER
+		j	BAIYI
+
+	BAIER:  addi	$s0		$zero	0xf00f
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6	1
+		beq	$t6		$t7     YISAN
+		j	BAIER
+
+	BAISAN:addi	$s0		$zero	0x0ff0
+		sw       $s0            0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi	$t6		$t6	1
+		beq	$t6		$t7     YISI
+		j	BAISAN
+
+	YIYI:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j 	BAIYI
+
+	YIER:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	BAIER
+	
+	YISAN:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+		j	BAISAN
+		
+	YISI:	addi	$t6		$zero	0
+		addi	$s0		$zero	0
+		sw       $s0            0xfff0($zero)
+
+		addi $t0, $zero, 0
+		
+        	addi	$t0		$t0	1
+		beq	$s4		$t0	WHICH2			
+		j			WHICH1			
+			
+
+
+
+STYLEALL:
+		addi 	$s0		$zero	0xffff
+		sw      $s0             0xfff0($zero)
+		lw             $k1		0xfff4($zero)
+		beq  	$k1		$k0	ER
+		beq	$k1	$t2	UP2
+		addi 	$t6		$t6	1
+		beq  	$t6 		$t7	QINGALL
+		j    STYLEALL
+	QINGALL:
+		addi $t6, $zero, 0
+		addi $t0, $zero, 0
+		addi $s0, $zero, 0
+		sw       $s0            0xfff0($zero)
+
+
+		addi	$t0		$t0	1
+		beq	$s4		$t0	WHICH2			
+		j			WHICH1	
+
+UP2:
+	sub	$t9	$s5	$t7
+	beq	$t9	$zero	UP_ONE2
+UP_TWO2:
+	lui  	$t7	0x0000		
+	ori  	$t7	$t7	0xe360
+	addi 	$t6	$zero	0  
+	addi 	$k1	$zero	0 
+	beq	$t8	$t2	STYLE1
+	beq	$t8	$t3	STYLE2
+	beq	$t8	$t4	STYLE3
+UP_ONE2:
+	lui  	$t7	0x0000		
+	ori  	$t7	$t7	0xe360
+	addi 	$t6	$zero	0  
+	addi 	$k1	$zero	0 
+	beq	$t8	$t2	STYLE1
+	beq	$t8	$t3	STYLE2
+	beq	$t8	$t4	STYLE3

@@ -1,0 +1,87 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+| Date         : Thu Jul 12 17:30:34 2018
+| Host         : DESKTOP-K4CSBTA running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
+| Design       : top
+| Device       : xc7a35t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    22 |
+| Unused register locations in slices containing registers |    44 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      4 |            1 |
+|    16+ |           21 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             298 |           74 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |             418 |           52 |
+| Yes          | No                    | No                     |              64 |           15 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              64 |           16 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------+----------------------------------------+------------------------------+------------------+----------------+
+|      Clock Signal      |              Enable Signal             |       Set/Reset Signal       | Slice Load Count | Bel Load Count |
++------------------------+----------------------------------------+------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG         |                                        |                              |                1 |              4 |
+|  dut/cont/nextstate__0 |                                        |                              |                5 |             26 |
+|  clk1_BUFG             |                                        | reset_IBUF                   |                4 |             26 |
+|  clk1_BUFG             | dut/cont/E[0]                          | reset_IBUF                   |                6 |             32 |
+|  clk1_BUFG             | dut/dp/res/leds_reg[15]_1[0]           | reset_IBUF                   |               10 |             32 |
+|  clk1_BUFG             |                                        | fd1/clear                    |                6 |             44 |
+|  clk1_BUFG             |                                        | fd2/count_high[0]_i_1__0_n_2 |                6 |             44 |
+|  clk1_BUFG             |                                        | fd3/count_high[0]_i_1__1_n_2 |                6 |             44 |
+|  clk1_BUFG             |                                        | btn_c_IBUF                   |                6 |             44 |
+|  clk1_BUFG             |                                        | btn_u_IBUF                   |                6 |             44 |
+|  clk1_BUFG             |                                        | btn_d_IBUF                   |                6 |             44 |
+|  clk1_BUFG             |                                        | dut/dp/ir/q_reg[0]_2         |                6 |             64 |
+|  clk1_BUFG             |                                        | dut/dp/ir/q_reg[0]_1         |                6 |             64 |
+|  clk1_BUFG             | dut/cont/out[0]                        |                              |               15 |             64 |
+|  n_0_354_BUFG          |                                        |                              |               15 |             64 |
+|  n_1_325_BUFG          |                                        |                              |               20 |             64 |
+|  clk1_BUFG             |                                        |                              |               33 |            140 |
+|  clk1_BUFG             | dut/cont/regwrite                      |                              |               12 |            192 |
+|  clk1_BUFG             | exmem/__1/RAM_reg_768_1023_0_0_i_1_n_2 |                              |               32 |            256 |
+|  clk1_BUFG             | exmem/__1/RAM_reg_0_255_0_0_i_1_n_2    |                              |               32 |            256 |
+|  clk1_BUFG             | exmem/__1/RAM_reg_512_767_0_0_i_1_n_2  |                              |               32 |            256 |
+|  clk1_BUFG             | exmem/__1/RAM_reg_256_511_0_0_i_1_n_2  |                              |               32 |            256 |
++------------------------+----------------------------------------+------------------------------+------------------+----------------+
+
+

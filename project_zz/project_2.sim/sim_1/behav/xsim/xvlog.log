@@ -1,0 +1,23 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/project_2/project_2.srcs/sources_1/new/mips.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [VRFC 10-311] analyzing module exmemory
+INFO: [VRFC 10-311] analyzing module button
+INFO: [VRFC 10-311] analyzing module ram
+INFO: [VRFC 10-311] analyzing module rom
+INFO: [VRFC 10-311] analyzing module mips
+INFO: [VRFC 10-311] analyzing module controller
+INFO: [VRFC 10-311] analyzing module datapath
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-311] analyzing module regfile
+INFO: [VRFC 10-311] analyzing module zerodetect
+INFO: [VRFC 10-311] analyzing module flop
+INFO: [VRFC 10-311] analyzing module flopen
+INFO: [VRFC 10-311] analyzing module flopenr
+INFO: [VRFC 10-311] analyzing module PC
+INFO: [VRFC 10-311] analyzing module mux2
+INFO: [VRFC 10-311] analyzing module mux4
+INFO: [VRFC 10-311] analyzing module signextend
+INFO: [VRFC 10-311] analyzing module leftshift2
+INFO: [VRFC 10-311] analyzing module key_fangdou
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/project_2/project_2.srcs/sim_1/new/testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module testbench
